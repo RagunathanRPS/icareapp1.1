@@ -10,8 +10,8 @@ import type React from "react"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Flowers&Saints Dashboard",
-  description: "A modern, responsive financial dashboard",
+  title: "iCareForex Dashboard",
+  description: "Manage your iCare Wallet",
 }
 
 export default function RootLayout({
