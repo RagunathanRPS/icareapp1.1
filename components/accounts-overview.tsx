@@ -7,11 +7,13 @@ import { Wallet, Plus, Send, CreditCard, MoreHorizontal } from "lucide-react";
 import { AddMoneyModal } from "./add-money-modal";
 import { SendMoneyModal } from "./send-money-modal";
 import { RequestMoneyModal } from "./request-money-modal";
+import { useCurrentUser } from "@/hooks/use-current-user";
+
 
 let initialAccounts = [
   { name: "USD", balance: 0 },
-  { name: "Savings", balance: 0 },
-  { name: "Investment", balance: 0 },
+  { name: "tUSDT Tether (TRC20)", balance: 0 },
+  { name: "eUSDT Tether (ERC20)", balance: 0 },
 ];
 
 export function AccountsOverview() {
@@ -19,6 +21,7 @@ export function AccountsOverview() {
   const [isAddMoneyModalOpen, setIsAddMoneyModalOpen] = useState(false);
   const [isSendMoneyModalOpen, setIsSendMoneyModalOpen] = useState(false);
   const [isRequestMoneyModalOpen, setIsRequestMoneyModalOpen] = useState(false);
+  const user = useCurrentUser();
 
   const totalBalance = accounts.reduce(
     (sum, account) => sum + account.balance,
@@ -87,8 +90,12 @@ export function AccountsOverview() {
           <Button size="sm" onClick={() => setIsRequestMoneyModalOpen(true)}>
             <CreditCard className="mr-2 h-4 w-4" /> Transfer
           </Button>
-          <Button size="sm" variant="outline">
-            <MoreHorizontal className="mr-2 h-4 w-4" /> Crypto Deposit
+         
+
+          <Button variant="outline" size="sm">
+            <a href="http://localhost:3000/app1/cd" rel="noopener noreferer">
+              Crypto Deposit
+            </a>
           </Button>
         </div>
       </CardContent>

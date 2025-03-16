@@ -1,52 +1,117 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { PaymentModal } from "./payment-modal"
+import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { PaymentModal } from "./payment-modal";
+import { blob } from "stream/consumers";
 
 const initialBills = [
-  { id: 1, name: "Electricity Bill", amount: 85, dueDate: "2023-07-15" },
-  { id: 2, name: "Internet Service", amount: 60, dueDate: "2023-07-18" },
-  { id: 3, name: "Credit Card Payment", amount: 500, dueDate: "2023-07-25" },
-  { id: 4, name: "Water Bill", amount: 45, dueDate: "2023-07-30" },
-]
+  {
+    id: 1,
+    name: "MT5 Desktop Trader",
+
+    dueDate: "Check downloads to install iCareForex MT5",
+  },
+  {
+    id: 2,
+    name: "MT5 Mobile Trader",
+    dueDate: "Redirect ot Andoid Playstore to Install",
+  },
+  {
+    id: 3,
+    name: "MT5 iOS Trader",
+    dueDate: "Redirect to Apple Store to Install",
+  },
+];
 
 export function QuickBillPay() {
-  const [bills, setBills] = useState(initialBills)
-  const [selectedBill, setSelectedBill] = useState(null)
+  const [bills, setBills] = useState(initialBills);
+  const [selectedBill, setSelectedBill] = useState(null);
 
   const handlePaymentSuccess = (paidBillId) => {
-    setBills(bills.filter((bill) => bill.id !== paidBillId))
-    setSelectedBill(null)
-  }
+    setBills(bills.filter((bill) => bill.id !== paidBillId));
+    setSelectedBill(null);
+  };
+  const FILE_URL = "http://localhost:3000/download/mt5setup.zip";
+
+  const downloadFileAtURL = (url) => {
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const blobURL = window.URL.createObjectURL(new Blob([blob]));
+        const filename = url.split("/").pop();
+        const aTag = document.createElement("a");
+        aTag.href = url;
+        aTag.setAttribute("download", filename);
+        document.body.appendChild(aTag);
+        aTag.click();
+        aTag.remove();
+      });
+  };
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Quick Bill Pay</CardTitle>
+        <CardTitle>Get iCareForex MT5</CardTitle>
       </CardHeader>
       <CardContent>
-        {bills.length > 0 ? (
-          <div className="space-y-4">
-            {bills.map((bill) => (
-              <div key={bill.id} className="flex items-center justify-between">
-                <div>
-                  <p className="font-medium">{bill.name}</p>
-                  <p className="text-sm text-muted-foreground">Due: {bill.dueDate}</p>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="font-bold">${bill.amount}</span>
-                  <Button variant="outline" size="sm" onClick={() => setSelectedBill(bill)}>
-                    Pay
-                  </Button>
-                </div>
-              </div>
-            ))}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">MT5 Desktop Trader</p>
+              <p className="text-sm text-muted-foreground"></p>
+            </div>
+            <div>
+              <Button
+                variant="outline"
+                onClick={() => {
+                  downloadFileAtURL(FILE_URL);
+                }}
+                size="sm"
+              >
+                Download
+              </Button>
+            </div>
           </div>
-        ) : (
-          <p className="text-center text-muted-foreground">No pending bills</p>
-        )}
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">MT5 Mobile Android Trader</p>
+              <p className="text-sm text-muted-foreground"></p>
+            </div>
+            <div>
+              <Button variant="outline" size="sm">
+                <a
+                  href="https://play.google.com/store/apps/details?id=net.metaquotes.metatrader5&hl=en&referrer=ref_id%3D5188538669638737272%26server%3DIcareForex-Server&pli=1"
+                  target="_blank"
+                  rel="noopener noreferer"
+                >
+                  Install
+                </a>
+              </Button>
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">MT5 iOS Trader</p>
+              <p className="text-sm text-muted-foreground"></p>
+            </div>
+            <div>
+              <Button variant="outline" size="sm">
+                <a
+                  href="https://apps.apple.com/us/app/metatrader-5/id413251709"
+                  target="_blank"
+                  rel="noopener noreferer"
+                >
+                  Install
+                </a>
+              </Button>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-2"></div>
+        </div>
       </CardContent>
       {selectedBill && (
         <PaymentModal
@@ -57,6 +122,5 @@ export function QuickBillPay() {
         />
       )}
     </Card>
-  )
+  );
 }
-

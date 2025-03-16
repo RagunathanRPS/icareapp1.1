@@ -110,7 +110,7 @@ export default function SettingsPage() {
                 <Label htmlFor="full-name">Full Name</Label>
                 <Input
                   id="full-name"
-                  value={settings.fullName}
+                  value="Demo"
                   onChange={(e) => updateSettings({ fullName: e.target.value })}
                 />
               </div>
@@ -119,7 +119,7 @@ export default function SettingsPage() {
                 <Input
                   id="email"
                   type="email"
-                  value={settings.email}
+                  value="demo@example.com"
                   onChange={(e) => updateSettings({ email: e.target.value })}
                 />
               </div>
@@ -128,7 +128,7 @@ export default function SettingsPage() {
                 <Input
                   id="phone"
                   type="tel"
-                  value={settings.phone}
+                  value="+91 9876543210"
                   onChange={(e) => updateSettings({ phone: e.target.value })}
                 />
               </div>

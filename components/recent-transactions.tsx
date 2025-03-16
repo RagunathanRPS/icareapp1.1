@@ -4,52 +4,45 @@ import { Card, CardContent } from "@/components/ui/card"
 const recentTransactions = [
   {
     id: "1",
-    name: "Alice Johnson",
-    email: "alice@example.com",
+    name: "Deposit",
+    email: "USD Account",
     amount: "+$350.00",
     status: "success",
-    date: "2023-07-20",
-    avatar:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/375238645_11475210.jpg-lU8bOe6TLt5Rv51hgjg8NT8PsDBmvN.jpeg",
+    date: "2025-02-20",
   },
   {
     id: "2",
-    name: "Bob Smith",
-    email: "bob@example.com",
+    name: "Widthdraw",
+    email: "USD Account",
     amount: "-$120.50",
     status: "pending",
-    date: "2023-07-19",
-    avatar:
-      "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/375238208_11475222.jpg-poEIzVHAGiIfMFQ7EiF8PUG1u0Zkzz.jpeg",
+    date: "2025-02-25",
   },
   {
     id: "3",
-    name: "Charlie Brown",
-    email: "charlie@example.com",
+    name: "Deposit",
+    email: "USD Account",
     amount: "+$1,000.00",
     status: "success",
-    date: "2023-07-18",
-    avatar: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/dd.jpg-4MCwPC2Bec6Ume26Yo1kao3CnONxDg.jpeg",
+    date: "2025-03-01",
   },
   {
     id: "4",
-    name: "Diana Martinez",
-    email: "diana@example.com",
+    name: "Widthdraw",
+    email: "USD Account",
     amount: "-$50.75",
     status: "failed",
-    date: "2023-07-17",
-    avatar: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/9334178.jpg-Y74tW6XFO68g7N36SE5MSNDNVKLQ08.jpeg",
+    date: "2025-03-11",
   },
   {
     id: "5",
-    name: "Ethan Williams",
-    email: "ethan@example.com",
+    name: "Deposit",
+    email: "Ethan Williams",
     amount: "+$720.00",
     status: "success",
-    date: "2023-07-16",
-    avatar: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5295.jpg-fLw0wGGZp8wuTzU5dnyfjZDwAHN98a.jpeg",
+    date: "2025-03-12",
   },
-]
+];
 
 export function RecentTransactions() {
   return (

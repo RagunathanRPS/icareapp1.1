@@ -1,5 +1,5 @@
 "use client"
-
+import { BeatLoader } from "react-spinners"
 import { useState } from "react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CheckCircle2 } from "lucide-react"
 
-const steps = ["Amount", "Card Details", "OTP Verification", "Confirmation"]
+const steps = ["Amount", "Payment Agent", "Account Details & Processing", "Confirmation"]
 
 export function AddMoneyModal({ isOpen, onClose, onAddMoney }) {
   const [currentStep, setCurrentStep] = useState(0)
@@ -29,7 +29,7 @@ export function AddMoneyModal({ isOpen, onClose, onAddMoney }) {
       case 0:
         return (
           <div className="space-y-4">
-            <Label htmlFor="amount">Amount to Add</Label>
+            <Label htmlFor="amount">Amount to Deposit</Label>
             <Input
               id="amount"
               type="number"
@@ -43,41 +43,27 @@ export function AddMoneyModal({ isOpen, onClose, onAddMoney }) {
         return (
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="cardNumber">Card Number</Label>
-              <Input
-                id="cardNumber"
-                placeholder="1234 5678 9012 3456"
-                value={cardDetails.number}
-                onChange={(e) => setCardDetails({ ...cardDetails, number: e.target.value })}
-              />
+              <Label htmlFor="cardNumber">All Day Exchange</Label>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="expiry">Expiry Date</Label>
-                <Input
-                  id="expiry"
-                  placeholder="MM/YY"
-                  value={cardDetails.expiry}
-                  onChange={(e) => setCardDetails({ ...cardDetails, expiry: e.target.value })}
-                />
+                <Label htmlFor="expiry">Accept All Mode Payments</Label>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cvv">CVV</Label>
-                <Input
-                  id="cvv"
-                  placeholder="123"
-                  value={cardDetails.cvv}
-                  onChange={(e) => setCardDetails({ ...cardDetails, cvv: e.target.value })}
-                />
+                <Label htmlFor="cvv">PA Code: 445785 </Label>
+                <Label htmlFor="cvv">
+                  <br />
+                  Will Connect on next step..{" "}
+                </Label>
               </div>
             </div>
           </div>
-        )
+        );
       case 2:
         return (
           <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">Enter the OTP sent to your registered mobile number</p>
-            <Input placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
+            <p className="text-sm text-muted-foreground">Payment Agent will share account details to Deposit...</p>
+            <BeatLoader />
           </div>
         )
       case 3:

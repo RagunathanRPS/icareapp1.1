@@ -6,7 +6,7 @@ import { BusinessMetrics } from "@/components/business-metrics"
 export default function Dashboard() {
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+      <h1 className="text-1xl font-bold tracking-tight"> Welcome to iCare Wallet, USD & Trusted Crypto Partner.</h1>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         <div className="lg:col-span-1">
@@ -24,3 +24,5 @@ export default function Dashboard() {
     </div>
   )
 }
+
+

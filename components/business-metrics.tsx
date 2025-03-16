@@ -5,43 +5,43 @@ import { TrendingUp, Users, DollarSign, ArrowRight } from "lucide-react";
 const metrics = [
   {
     id: 1,
-    title: "Revenue Growth",
-    subtitle: "Monthly revenue target",
+    title: "All Day Exchange | PA Code:445785",
+    subtitle: "Deposit & Widthraw, Accept All Mode Payments",
     icon: TrendingUp,
-    status: "On Track",
-    progress: 75,
+    status: "Reserved Funds",
+    progress: 25,
     target: 100000,
-    current: 75000,
+    current: 25000,
     unit: "$",
   },
   {
     id: 2,
-    title: "Customer Acquisition",
-    subtitle: "New customers this quarter",
-    icon: Users,
-    status: "Behind",
-    progress: 60,
-    target: 1000,
-    current: 600,
-    unit: "",
+    title: "HighScale Exchange",
+    subtitle: "Deposit, Accept All Mode Payments",
+    icon: DollarSign,
+    status: "Reserved Fund",
+    progress: 10,
+    target: 100000,
+    current: 0,
+    unit: "$",
   },
   {
     id: 3,
-    title: "Average Order Value",
-    subtitle: "Target AOV for Q3",
+    title: "iCareForex Crypto Deposit",
+    subtitle: "tUSDT, Tether TRC20 | eUSDT Tether ERC20 | BTC",
     icon: DollarSign,
-    status: "Ahead",
-    progress: 110,
-    target: 150,
-    current: 165,
+    status: "Accept Maximum Crypto Deposit",
+    progress: 10,
+    target: 15000000,
+    current: 15,
     unit: "$",
   },
 ];
 
 const statusColors = {
-  "On Track":
+  "Reserved Funds":
     "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200",
-  Behind: "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
+  "Reserved Fund": "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200",
   Ahead: "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200",
 };
 
@@ -51,7 +51,9 @@ export function BusinessMetrics() {
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-semibold">Payment Agents</h2>
         <Button variant="outline" size="sm">
-          Payment Agent Disclaimer <ArrowRight className="ml-2 h-4 w-4" />
+          <a href="http://localhost:3000/app1/pa" rel="noopener noreferer">
+            Payment Agent Disclaimer
+          </a>
         </Button>
       </div>
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">

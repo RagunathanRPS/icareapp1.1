@@ -1,30 +1,51 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { CheckCircle2 } from "lucide-react"
+import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { CheckCircle2 } from "lucide-react";
+import { BeatLoader } from "react-spinners";
 
-const steps = ["Amount and Account", "Card Details", "OTP Verification", "Confirmation"]
+const steps = [
+  "Amount and Account",
+  "Bank Details",
+  "Widthdraw",
+  "Confirmation",
+];
 
 export function SendMoneyModal({ isOpen, onClose, onSendMoney, accounts }) {
-  const [currentStep, setCurrentStep] = useState(0)
-  const [amount, setAmount] = useState("")
-  const [selectedAccount, setSelectedAccount] = useState("")
-  const [cardDetails, setCardDetails] = useState({ number: "", expiry: "", cvv: "" })
-  const [otp, setOtp] = useState("")
+  const [currentStep, setCurrentStep] = useState(0);
+  const [amount, setAmount] = useState("");
+  const [selectedAccount, setSelectedAccount] = useState("");
+  const [cardDetails, setCardDetails] = useState({
+    number: "",
+    expiry: "",
+    cvv: "",
+  });
+  const [otp, setOtp] = useState("");
 
   const handleContinue = () => {
     if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1)
+      setCurrentStep(currentStep + 1);
     } else {
-      onSendMoney(Number.parseFloat(amount), selectedAccount)
-      onClose()
+      onSendMoney(Number.parseFloat(amount), selectedAccount);
+      onClose();
     }
-  }
+  };
 
   const renderStepContent = () => {
     switch (currentStep) {
@@ -32,7 +53,7 @@ export function SendMoneyModal({ isOpen, onClose, onSendMoney, accounts }) {
         return (
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="amount">Amount to Send</Label>
+              <Label htmlFor="amount">Amount to Widthdraw</Label>
               <Input
                 id="amount"
                 type="number"
@@ -43,7 +64,10 @@ export function SendMoneyModal({ isOpen, onClose, onSendMoney, accounts }) {
             </div>
             <div className="space-y-2">
               <Label htmlFor="account">From Account</Label>
-              <Select onValueChange={setSelectedAccount} value={selectedAccount}>
+              <Select
+                onValueChange={setSelectedAccount}
+                value={selectedAccount}
+              >
                 <SelectTrigger id="account">
                   <SelectValue placeholder="Select account" />
                 </SelectTrigger>
@@ -57,60 +81,68 @@ export function SendMoneyModal({ isOpen, onClose, onSendMoney, accounts }) {
               </Select>
             </div>
           </div>
-        )
+        );
       case 1:
         return (
           <div className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="cardNumber">Card Number</Label>
+              <Label htmlFor="cardNumber">EnterAccount Number</Label>
               <Input
-                id="cardNumber"
-                placeholder="1234 5678 9012 3456"
+                id="Account Number"
+                placeholder="Enter Widthdraw Bank Account Number"
                 value={cardDetails.number}
-                onChange={(e) => setCardDetails({ ...cardDetails, number: e.target.value })}
+                onChange={(e) =>
+                  setCardDetails({ ...cardDetails, number: e.target.value })
+                }
               />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="expiry">Expiry Date</Label>
+                <Label htmlFor="expiry">IFSC</Label>
                 <Input
                   id="expiry"
-                  placeholder="MM/YY"
+                  placeholder="Enter IFS Code"
                   value={cardDetails.expiry}
-                  onChange={(e) => setCardDetails({ ...cardDetails, expiry: e.target.value })}
+                  onChange={(e) =>
+                    setCardDetails({ ...cardDetails, expiry: e.target.value })
+                  }
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="cvv">CVV</Label>
+                <Label htmlFor="cvv">Transfer Mode</Label>
                 <Input
                   id="cvv"
-                  placeholder="123"
+                  placeholder="IMPS or NEFT"
                   value={cardDetails.cvv}
-                  onChange={(e) => setCardDetails({ ...cardDetails, cvv: e.target.value })}
+                  onChange={(e) =>
+                    setCardDetails({ ...cardDetails, cvv: e.target.value })
+                  }
                 />
               </div>
             </div>
           </div>
-        )
+        );
       case 2:
         return (
           <div className="space-y-4">
-            <p className="text-sm text-muted-foreground">Enter the OTP sent to your registered mobile number</p>
-            <Input placeholder="Enter OTP" value={otp} onChange={(e) => setOtp(e.target.value)} />
+            <p className="text-sm text-muted-foreground">
+              Checking & Processing Widthdraw Payment
+            </p>
+            <BeatLoader />
           </div>
-        )
+        );
       case 3:
         return (
           <div className="text-center space-y-4">
             <CheckCircle2 className="mx-auto h-12 w-12 text-green-500" />
-            <p className="text-lg font-medium">Money Sent Successfully</p>
+            <p className="text-lg font-medium">Money Widthdraw Successfully</p>
             <p className="text-sm text-muted-foreground">
               ${amount} has been sent from your {selectedAccount} account.
             </p>
           </div>
-        )
+        );
     }
-  }
+  };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -122,7 +154,10 @@ export function SendMoneyModal({ isOpen, onClose, onSendMoney, accounts }) {
           {renderStepContent()}
           <div className="flex justify-between">
             {currentStep > 0 && currentStep < steps.length - 1 && (
-              <Button variant="outline" onClick={() => setCurrentStep(currentStep - 1)}>
+              <Button
+                variant="outline"
+                onClick={() => setCurrentStep(currentStep - 1)}
+              >
                 Back
               </Button>
             )}
@@ -133,6 +168,5 @@ export function SendMoneyModal({ isOpen, onClose, onSendMoney, accounts }) {
         </div>
       </DialogContent>
     </Dialog>
-  )
+  );
 }
-
