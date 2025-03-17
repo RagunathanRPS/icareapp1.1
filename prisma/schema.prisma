@@ -24,10 +24,6 @@ model User {
   password      String?
   role          UserRole @default(USER)
   accounts      Account[]
-  acbalusd      String?
-  acbalusdt     String?
-  acbalbtc      String?
-  acbaletc      String?
 
   @@map("users")  
 }
