@@ -7,8 +7,8 @@ const AdminPage = () => {
   const role = useCurrentRole();
 
   return (
-    <Card className="w-[600px]">
-      
+    <Card className="w-[100%] p-4 flex">
+      <p> You will get IB Transaction History </p>
     </Card>
   );
 };

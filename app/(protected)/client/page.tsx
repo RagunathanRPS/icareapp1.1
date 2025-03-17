@@ -1,16 +1,13 @@
 "use client";
 
-import { UserInfo } from "@/components/user-info";
+
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { currentUser } from "@/lib/auth";
+
 
 const ClientPage = () => {
   const user = useCurrentUser();
 return (
-  <UserInfo
-    label="📱Client Components"
-    user={user}
-  />
+  <h1> You will Get Unique IB Link here soon... once verification done</h1>
 );
 }
 
