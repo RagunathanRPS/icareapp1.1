@@ -12,9 +12,9 @@ const SettingsPage = () => {
 
   return (
     <div className="bg-white p-10 rounded-xl">
-      <button onClick={onClick} type="submit">
-          Sign Out
-        </button>
+      
+         <h1> Welcome to iCareForex </h1>
+      
     </div>
   );
 }
