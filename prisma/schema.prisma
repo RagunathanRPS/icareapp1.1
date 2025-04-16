@@ -12,7 +12,7 @@ generator client {
 
 enum UserRole {
   ADMIN
-  USER
+  IB
 }
 
 model User {
